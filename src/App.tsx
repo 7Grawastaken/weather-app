@@ -7,16 +7,16 @@ import MainPanel from "./components/layout/MainPanel/MainPanel";
 import FullScreenLoading from "./components/Loaders/FullScreenLoading";
 
 function App(): JSX.Element {
-  const { data } = useQuery<WeatherData>({
+  const { data, isPending } = useQuery<WeatherData>({
     queryKey: ["weather"],
-    queryFn: () => fetchWeather("New York", "metric"),
+    queryFn: () => fetchWeather("United Arab Emirates", "metric"),
   });
   if (data) console.log(data);
 
   return (
     <div className="bg-[#D6D7DB] min-h-screen flex items-center justify-center">
       <div className="bg-white rounded-4xl border border-gray-400 flex gap-0 relative z-10 w-[60%]">
-        <FullScreenLoading />
+        {isPending && <FullScreenLoading />}
         <Sidebar />
         <MainPanel />
       </div>

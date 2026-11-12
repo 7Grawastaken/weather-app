@@ -12,10 +12,10 @@ export default function HeaderMainPanel(): JSX.Element {
         </button>
       </div>
       <div className="flex gap-5">
-        <button className="rounded-full bg-black text-white px-2 py-1.5 text-sm cursor-pointer">
+        <button className="rounded-full bg-black text-white px-2 py-1.5 text-sm cursor-pointer hover:scale-110 duration-200">
           <span className="font-bold">°</span>C
         </button>
-        <button className="rounded-full bg-white text-black px-2 text-sm border cursor-pointer">
+        <button className="rounded-full bg-white text-black px-2 text-sm border cursor-pointer hover:scale-110 duration-200">
           <span className="font-bold">°</span>F
         </button>
       </div>
