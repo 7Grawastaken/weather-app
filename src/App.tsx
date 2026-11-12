@@ -1,9 +1,10 @@
 import { type JSX } from "react";
 import { fetchWeather } from "./services/weatherApi";
 import { useQuery } from "@tanstack/react-query";
+import type { WeatherData } from "./types/DataJSON";
 
 function App(): JSX.Element {
-  const { data } = useQuery({
+  const { data } = useQuery<WeatherData>({
     queryKey: ["weather"],
     queryFn: () => fetchWeather("New York", "metric"),
   });
