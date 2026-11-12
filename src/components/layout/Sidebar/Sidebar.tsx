@@ -5,7 +5,7 @@ import LocationCard from "../../sidebar/LocationCard/LocationCard";
 
 export default function Sidebar(): JSX.Element {
   return (
-    <div className="p-10">
+    <div className="p-10 flex flex-col justify-between">
       <SearchBar />
       <CurrentWeather />
       <LocationCard />
