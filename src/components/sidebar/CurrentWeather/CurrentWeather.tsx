@@ -29,11 +29,11 @@ export default function CurrentWeather(): JSX.Element {
 
       <p className="flex gap-2 text-xs items-center font-medium mb-2">
         <Cloud className="text-gray-300" />
-        Mostly Cloudy
+        {data.currentConditions.conditions}
       </p>
       <p className="flex gap-2 text-xs items-center font-medium">
         <WavesVertical className="text-blue-700" />
-        Rain - <span>30%</span>
+        Rain - <span>{data.currentConditions.precipprob}%</span>
       </p>
     </div>
   );

@@ -3,10 +3,14 @@ import SearchBar from "../../sidebar/SearchBar/SearchBar";
 import CurrentWeather from "../../sidebar/CurrentWeather/CurrentWeather";
 import LocationCard from "../../sidebar/LocationCard/LocationCard";
 
-export default function Sidebar(): JSX.Element {
+interface SidebarProps {
+  setLocation: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function Sidebar({ setLocation }: SidebarProps): JSX.Element {
   return (
     <div className="p-10 flex flex-col justify-between">
-      <SearchBar />
+      <SearchBar setLocation={setLocation} />
       <CurrentWeather />
       <LocationCard />
     </div>
