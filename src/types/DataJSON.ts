@@ -51,6 +51,17 @@ export interface CurrentConditions {
   severerisk?: number;
   description?: string;
   hours?: CurrentConditions[];
+
+  // Air quality (only present when requested via `elements=+aqius,+aqieur,...`)
+  aqius?: number | null; // US AQI
+  aqieur?: number | null; // European AQI
+  pm1?: number | null; // µg/m³
+  pm2p5?: number | null; // µg/m³
+  pm10?: number | null; // µg/m³
+  o3?: number | null; // ozone, µg/m³
+  no2?: number | null; // nitrogen dioxide, µg/m³
+  so2?: number | null; // sulphur dioxide, µg/m³
+  co?: number | null; // carbon monoxide, µg/m³
 }
 
 export const Conditions = {

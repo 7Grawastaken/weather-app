@@ -8,7 +8,7 @@ import WindCard from "../WindCard/WindCard";
 
 export default function Highlights(): JSX.Element {
   return (
-    <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 [&>div]:hover:scale-103 [&>div]:duration-300">
+    <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 [&>div]:hover:scale-103 [&>div]:duration-300 [&>div]:min-h-45">
       <AirQualityCard />
       <HumidityCard />
       <SunriseSunsetCard />

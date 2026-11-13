@@ -11,9 +11,29 @@ export async function fetchWeather(
 ) {
   // Fake Delay for Testing
   await sleep(delayMs);
+  const params = new URLSearchParams({
+    unitGroup: unit,
+    key: API_KEY,
+    contentType: "json",
+    lang: "en",
+    include: "current,hours,days",
+    elements: [
+      "aqius",
+      "aqieur",
+      "pm1",
+      "pm2p5",
+      "pm10",
+      "o3",
+      "no2",
+      "so2",
+      "co",
+    ]
+      .map((e) => `+${e}`)
+      .join(","),
+  });
 
   const response = await fetch(
-    `${BASE_URL}/${encodeURIComponent(location)}?unitGroup=${unit}&key=${API_KEY}&contentType=json`,
+    `${BASE_URL}/${encodeURIComponent(location)}?${params.toString()}`,
   );
 
   if (!response.ok) throw new Error(`Weather Request Failed`);
