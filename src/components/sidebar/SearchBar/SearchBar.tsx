@@ -1,7 +1,6 @@
 import type { JSX } from "react/jsx-runtime";
 import { Search } from "lucide-react";
 import { useState } from "react";
-import { useWeatherData } from "../../../services/WeatherDataContext";
 
 interface SearchBarProps {
   setLocation: React.Dispatch<React.SetStateAction<string>>;
@@ -10,8 +9,6 @@ interface SearchBarProps {
 export default function SearchBar({
   setLocation,
 }: SearchBarProps): JSX.Element {
-  const data = useWeatherData();
-  console.log(data);
   const [locationInput, setLocationInput] = useState("");
 
   return (
@@ -24,6 +21,7 @@ export default function SearchBar({
         type="text"
         value={locationInput}
         onChange={(e) => setLocationInput(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && setLocation(locationInput)}
         name="SearchBar"
         id="searchBar"
         placeholder="Search for places..."
