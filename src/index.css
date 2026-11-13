@@ -5,3 +5,19 @@
   box-sizing: border-box;
   font-family: "DM Sans", sans-serif;
 }
+
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@utility active-tab {
+  @apply underline underline-offset-7 decoration-gray-600 decoration-2;
+}
+
+@utility active-unit {
+  @apply bg-black text-white
+}
