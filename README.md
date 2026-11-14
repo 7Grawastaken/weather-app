@@ -1,78 +1,91 @@
-# React + TypeScript + Vite
+# Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive weather dashboard built with React and TypeScript. Search for any location and see current conditions, an hourly forecast, a weekly forecast and daily highlights, with a one-click switch between metric and US units.
 
-Currently, two official plugins are available:
+![Weather App screenshot](./screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Live demo:** https://weather-app-tau-amber-16.vercel.app
 
-## React Compiler
+## Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Search weather by location (defaults to the United Arab Emirates)
+- Switch between metric (°C, km/h, km) and US (°F, mph, mi) units; values and labels update together
+- **Today** tab with an hourly forecast and **Week** tab with a multi-day forecast
+- Today's highlights such as visibility, wind and more
+- Loading overlay while data is fetching and an error message if a request fails
+- Responsive layout for mobile, tablet and desktop
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## Tech Stack
 
-## Expanding the ESLint configuration
+- [React](https://react.dev/) with [TypeScript](https://www.typescriptlang.org/)
+- [TanStack Query](https://tanstack.com/query) for data fetching, caching and loading states
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [Visual Crossing Weather API](https://www.visualcrossing.com/weather-api) for weather data
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- [Node.js](https://nodejs.org/) 18 or newer
+- A free API key from [Visual Crossing](https://www.visualcrossing.com/weather-api)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
 
+```bash
+# 1. Clone the repository
+git clone https://github.com/<your-username>/<your-repo>.git
+cd <your-repo>
+
+# 2. Install dependencies
+npm install
+
+# 3. Add your API key (see below)
+
+# 4. Start the dev server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### Environment variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Create a `.env` file in the project root:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_WEATHER_API_KEY=your_visual_crossing_api_key
+```
+
+Never commit your `.env` file. Make sure it is listed in `.gitignore`.
+
+## Available Scripts
+
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start the development server         |
+| `npm run build`   | Create a production build            |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint`    | Run ESLint                           |
+
+## Project Structure
 
 ```
+src/
+├── components/
+│   ├── layout/        # Sidebar, MainPanel and header
+│   ├── forecast/      # Hourly and weekly forecast
+│   ├── highlights/    # Highlight cards (visibility, wind, ...)
+│   └── Loaders/       # Loading spinner
+├── services/          # API calls and weather/unit context
+├── types/             # TypeScript types for the API response
+└── utils/             # Unit definitions and helpers
+```
+
+## How Units Work
+
+The selected unit system (`metric` or `us`) is sent to the API as the `unitGroup`, so the API returns already-converted values. A central `UNITS` table supplies the matching labels, and the `useUnits()` hook gives any component the right symbols (`°C`/`°F`, `km/h`/`mph`, `km`/`mi`).
+
+## Acknowledgements
+
+- Weather data provided by [Visual Crossing](https://www.visualcrossing.com/)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
