@@ -1,5 +1,7 @@
 import type { JSX } from "react/jsx-runtime";
 import { useWeatherData } from "../../../services/WeatherDataContext";
+import sunrise from "../../../assets/sunrise.svg";
+import sunset from "../../../assets/sunset.svg";
 
 export default function SunriseSunsetCard(): JSX.Element {
   const data = useWeatherData();
@@ -11,21 +13,13 @@ export default function SunriseSunsetCard(): JSX.Element {
         <>
           <div className="flex flex-col">
             <div className="flex items-center gap-3">
-              <img
-                src="src/assets/sunrise.svg"
-                alt="Sunrise Time"
-                className="size-12"
-              />
+              <img src={sunrise} alt="Sunrise Time" className="size-12" />
               <div className="flex flex-col">
                 <span>{data?.currentConditions.sunrise}</span>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <img
-                src="src/assets/sunset.svg"
-                alt="Sunset Time"
-                className="size-12"
-              />
+              <img src={sunset} alt="Sunset Time" className="size-12" />
               <div className="flex flex-col">
                 <span>{data?.currentConditions.sunset}</span>
               </div>

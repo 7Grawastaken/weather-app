@@ -1,4 +1,6 @@
 import type { JSX } from "react/jsx-runtime";
+import weatherIcon from "../../../assets/weather-icon.svg";
+
 import {
   Sun,
   Moon,
@@ -43,11 +45,7 @@ export default function CurrentWeather(): JSX.Element {
 
   return (
     <div className="flex flex-col justify-center">
-      <img
-        src="src/assets/weather-icon.svg"
-        alt="Weather Icon"
-        className="w-64 h-64"
-      />
+      <img src={weatherIcon} alt="Weather Icon" className="w-64 h-64" />
       <h1 className="text-7xl font-extralight mb-5">
         {data?.currentConditions.temp}
         <span className="font-medium text-5xl align-top">°</span>
