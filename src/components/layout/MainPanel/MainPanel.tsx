@@ -17,14 +17,14 @@ export default function MainPanel({
   const [selectedTab, setSelectedTab] = useState<"today" | "week">("today");
 
   return (
-    <div className="h-full w-full min-w-0 overflow-y-auto bg-[#F7F6F9] p-10 rounded-b-4xl lg:rounded-r-4xl scrollbar-gutter-stable">
+    <div className="h-full w-full min-w-0 overflow-y-auto bg-[#F7F6F9] p-10 rounded-b-4xl lg:rounded-r-4xl scrollbar-gutter-stable no-scrollbar">
       <HeaderMainPanel
         setSelectedTab={setSelectedTab}
         selectedTab={selectedTab}
         setSelectedUnit={setSelectedUnit}
         selectedUnit={selectedUnit}
       />
-      <div className="h-55">
+      <div className="lg:h-55">
         {selectedTab === "today" ? <HourlyForecast /> : <WeekForecast />}
       </div>
 

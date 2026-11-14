@@ -7,7 +7,7 @@ import MainPanel from "./components/layout/MainPanel/MainPanel";
 import { WeatherDataProvider } from "./services/WeatherDataContext";
 import FullScreenSpinnerLoading from "./components/Loaders/FullScreenSpinnerLoading";
 
-function App(): JSX.Element {
+export default function App(): JSX.Element {
   const [location, setLocation] = useState("United Arab Emirates");
   const [selectedUnit, setSelectedUnit] = useState<"metric" | "us">("metric");
 
@@ -17,7 +17,6 @@ function App(): JSX.Element {
     placeholderData: keepPreviousData,
     refetchOnWindowFocus: false,
   });
-  if (data) console.log(data);
 
   return (
     <div className="bg-[#D6D7DB] min-h-screen flex items-center justify-center">
@@ -37,5 +36,3 @@ function App(): JSX.Element {
     </div>
   );
 }
-
-export default App;
