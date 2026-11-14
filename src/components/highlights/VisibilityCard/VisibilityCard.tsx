@@ -14,6 +14,7 @@ export default function VisibilityCard(): JSX.Element {
   const visibility = data?.currentConditions?.visibility;
   const category = visibility != null ? visibilityCategory(visibility) : null;
 
+
   return (
     <div className="bg-white p-5 rounded-2xl flex gap-y-5 flex-col">
       <h1 className="text-gray-400">Visibility</h1>

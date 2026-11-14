@@ -18,9 +18,6 @@ export default function SunriseSunsetCard(): JSX.Element {
               />
               <div className="flex flex-col">
                 <span>{data?.currentConditions.sunrise}</span>
-                <span className="text-gray-400 text-xs">
-                  {data?.days[0].datetime}
-                </span>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -31,7 +28,6 @@ export default function SunriseSunsetCard(): JSX.Element {
               />
               <div className="flex flex-col">
                 <span>{data?.currentConditions.sunset}</span>
-                <span className="text-gray-400 text-xs">+2m 22s</span>
               </div>
             </div>
           </div>
