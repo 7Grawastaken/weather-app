@@ -6,6 +6,8 @@ A responsive weather dashboard built with React and TypeScript. Search for any l
 
 **Live demo:** https://weather-app-tau-amber-16.vercel.app
 
+This project is based on the [Weather App](https://roadmap.sh/projects/weather-app) project idea from [roadmap.sh](https://roadmap.sh/).
+
 ## Features
 
 - Search weather by location (defaults to the United Arab Emirates)
