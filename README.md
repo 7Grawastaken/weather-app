@@ -2,7 +2,7 @@
 
 A responsive weather dashboard built with React and TypeScript. Search for any location and see current conditions, an hourly forecast, a weekly forecast and daily highlights, with a one-click switch between metric and US units.
 
-Weather App screenshot src/assets/Screenshot 2026-11-14 153715.png
+![Weather App screenshot](./src/assets/Screenshot%202026-11-14%20153715.png)
 
 **Live demo:** https://weather-app-tau-amber-16.vercel.app
 
