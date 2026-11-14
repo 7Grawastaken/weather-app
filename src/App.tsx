@@ -25,7 +25,7 @@ export default function App(): JSX.Element {
         {isError && (
           <p className="p-8 text-red-500">Failed to load weather data.</p>
         )}
-        <WeatherDataProvider value={{ data }}>
+        <WeatherDataProvider value={{ data, selectedUnit }}>
           <Sidebar setLocation={setLocation} />
           <MainPanel
             setSelectedUnit={setSelectedUnit}
