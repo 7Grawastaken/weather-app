@@ -1,5 +1,5 @@
 import type { JSX } from "react/jsx-runtime";
-import { useWeatherData } from "../../../services/WeatherDataContext";
+import { useWeatherData } from "../../../hooks/useWeatherData";
 
 function humidityCategory(humidity: number) {
   if (humidity < 30) return { label: "Dry", color: "#ff7e00" };
@@ -9,7 +9,7 @@ function humidityCategory(humidity: number) {
 }
 
 export default function HumidityCard(): JSX.Element {
-  const data = useWeatherData();
+  const { data } = useWeatherData();
   const humidity = data?.currentConditions?.humidity;
   const category = humidity != null && humidityCategory(humidity);
 

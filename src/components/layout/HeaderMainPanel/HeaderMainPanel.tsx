@@ -1,19 +1,24 @@
 import type React from "react";
 import type { JSX } from "react/jsx-runtime";
+import { useDispatch } from "react-redux";
+import { setSelectedUnit } from "../../../slices/selectedUnitSlice";
+import { useSelector } from "react-redux";
 
 interface HeaderMainPanelProps {
   setSelectedTab: React.Dispatch<React.SetStateAction<"today" | "week">>;
   selectedTab: "today" | "week";
-  selectedUnit: "metric" | "us";
-  setSelectedUnit: React.Dispatch<React.SetStateAction<"metric" | "us">>;
 }
 
 export default function HeaderMainPanel({
   setSelectedTab,
   selectedTab,
-  setSelectedUnit,
-  selectedUnit,
 }: HeaderMainPanelProps): JSX.Element {
+  const dispatch = useDispatch();
+  const selectedUnit = useSelector(
+    (state: { selectedUnit: { value: "metric" | "us" } }) =>
+      state.selectedUnit.value,
+  );
+
   function goTodayTab() {
     setSelectedTab("today");
   }
@@ -23,11 +28,11 @@ export default function HeaderMainPanel({
   }
 
   function switchToMetric() {
-    setSelectedUnit("metric");
+    dispatch(setSelectedUnit("metric"));
   }
 
   function switchToUsUnit() {
-    setSelectedUnit("us");
+    dispatch(setSelectedUnit("us"));
   }
 
   return (

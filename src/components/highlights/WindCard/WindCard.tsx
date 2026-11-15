@@ -1,7 +1,7 @@
 import type { JSX } from "react/jsx-runtime";
 import { MapPin } from "lucide-react";
-import { useWeatherData } from "../../../services/WeatherDataContext";
-import { useUnits } from "../../../services/WeatherDataContext";
+import { useWeatherData } from "../../../hooks/useWeatherData";
+import { useUnits } from "../../../hooks/useUnits";
 
 const COMPASS_POINTS = [
   "N",
@@ -28,10 +28,10 @@ function degreesToCompass(deg: number): string {
 }
 
 export default function WindCard(): JSX.Element {
-  const data = useWeatherData();
+  const { data } = useWeatherData();
+  const unit = useUnits();
   const windspeed = data?.currentConditions?.windspeed;
   const winddir = data?.currentConditions?.winddir;
-  const units = useUnits();
 
   return (
     <div className="bg-white p-5 rounded-2xl flex gap-y-5 flex-col">
@@ -40,7 +40,7 @@ export default function WindCard(): JSX.Element {
         <>
           <span className="text-5xl">
             {windspeed}
-            <span className="text-xl"> {units.speed}</span>
+            <span className="text-xl"> {unit.speed}</span>
           </span>
           {winddir != null && (
             <div className="flex gap-2">

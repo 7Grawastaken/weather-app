@@ -1,47 +1,47 @@
 import type { JSX } from "react/jsx-runtime";
-import { useWeatherData, useUnits } from "../../../services/WeatherDataContext";
+import { useWeatherData } from "../../../hooks/useWeatherData";
+import { useUnits } from "../../../hooks/useUnits";
+import { useSelector } from "react-redux";
 
-const KM_PER_MILE = 1.609344;
-
-function visibilityCategory(visKm: number) {
-  if (visKm < 1) return { label: "Very Poor", color: "#ff0000" };
-  if (visKm < 4) return { label: "Poor", color: "#ff7e00" };
-  if (visKm < 10) return { label: "Moderate", color: "#ffd000" };
-  if (visKm < 20) return { label: "Good", color: "#00e400" };
-  return { label: "Excellent", color: "#00b894" };
+function visibilityCategory(visibility: number) {
+  if (typeof visibility === "number") {
+    if (visibility >= 0 && visibility < 1)
+      return { label: "Very Poor", color: "bg-red-500" };
+    else if (visibility >= 1 && visibility < 4)
+      return { label: "Poor", color: "bg-orange-500" };
+    else if (visibility >= 4 && visibility < 10)
+      return { label: "Moderate", color: "bg-yellow-500" };
+    else if (visibility >= 10 && visibility < 16)
+      return { label: "Good", color: "bg-green-400" };
+    return { label: "Very Good", color: "bg-green-500" };
+  }
 }
 
 export default function VisibilityCard(): JSX.Element {
-  const data = useWeatherData();
-  const units = useUnits();
-
-  const visibility = data?.currentConditions?.visibility;
-
-  const visibilityKm =
-    visibility != null
-      ? units.distance === "km"
-        ? visibility
-        : visibility * KM_PER_MILE
-      : null;
-
-  const roundedKm =
-    visibilityKm != null ? Math.round(visibilityKm * 2) / 2 : null;
-
-  const category = roundedKm != null ? visibilityCategory(roundedKm) : null;
+  const { data } = useWeatherData();
+  const unit = useUnits();
+  const selectedUnit = useSelector(
+    (state: { selectedUnit: { value: "metric" | "us" } }) =>
+      state.selectedUnit.value,
+  );
+  const rawVisibility = data?.currentConditions?.visibility ?? 0;
+  const visibility =
+    (selectedUnit === "metric" ? rawVisibility : rawVisibility * 1.609) ?? 0;
+  const category =
+    rawVisibility !== undefined ? visibilityCategory(visibility) : undefined;
 
   return (
     <div className="bg-white p-5 rounded-2xl flex gap-y-5 flex-col">
       <h1 className="text-gray-400">Visibility</h1>
-      {category ? (
+      {rawVisibility && category ? (
         <>
           <span className="text-5xl">
-            {visibility}
-            <span className="text-xl"> {units.distance}</span>
+            {rawVisibility}
+            <span className="text-xl"> {unit.distance}</span>
           </span>
           <p className="flex items-center gap-2">
             <span
-              className="inline-block h-3 w-3 rounded-full"
-              style={{ backgroundColor: category.color }}
+              className={`inline-block h-3 w-3 rounded-full ${category.color} `}
             />
             {category.label}
           </p>

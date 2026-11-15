@@ -1,6 +1,7 @@
 import type { JSX } from "react/jsx-runtime";
 import weatherIcon from "../../../assets/weather-icon.svg";
-
+import { useWeatherData } from "../../../hooks/useWeatherData";
+import { useUnits } from "../../../hooks/useUnits";
 import {
   Sun,
   Moon,
@@ -15,8 +16,6 @@ import {
   WavesVertical,
   type LucideIcon,
 } from "lucide-react";
-import { useWeatherData } from "../../../services/WeatherDataContext";
-import { useUnits } from "../../../services/WeatherDataContext";
 
 const WEATHER_ICONS: Record<string, { Icon: LucideIcon; color: string }> = {
   "clear-day": { Icon: Sun, color: "text-yellow-400" },
@@ -32,8 +31,8 @@ const WEATHER_ICONS: Record<string, { Icon: LucideIcon; color: string }> = {
 };
 
 export default function CurrentWeather(): JSX.Element {
-  const data = useWeatherData();
-  const units = useUnits();
+  const { data } = useWeatherData();
+  const unit = useUnits();
   const unFormatedDate =
     data && new Date(data.currentConditions.datetimeEpoch * 1000);
   const day =
@@ -49,7 +48,7 @@ export default function CurrentWeather(): JSX.Element {
       <h1 className="text-7xl font-extralight mb-5">
         {data?.currentConditions.temp}
         <span className="font-medium text-5xl align-top">°</span>
-        <span className="align-top font-light text-5xl">{units.temp}</span>
+        <span className="align-top font-light text-5xl">{unit.temp}</span>
       </h1>
       <p className="flex gap-2">
         {day},<span className="text-[#C9C9C9]">{date}</span>

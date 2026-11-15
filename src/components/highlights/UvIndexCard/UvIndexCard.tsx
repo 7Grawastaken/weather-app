@@ -1,5 +1,5 @@
 import type { JSX } from "react/jsx-runtime";
-import { useWeatherData } from "../../../services/WeatherDataContext";
+import { useWeatherData } from "../../../hooks/useWeatherData";
 
 const MAX_UV = 12;
 const CX = 100;
@@ -91,7 +91,7 @@ function UvGauge({ value }: { value: number }): JSX.Element {
 }
 
 export default function UvIndexCard(): JSX.Element {
-  const data = useWeatherData();
+  const { data } = useWeatherData();
   const uv = data?.currentConditions?.uvindex;
 
   return (

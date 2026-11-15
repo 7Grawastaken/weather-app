@@ -1,10 +1,10 @@
 import type { JSX } from "react/jsx-runtime";
-import { useWeatherData } from "../../../services/WeatherDataContext";
 import sunrise from "../../../assets/sunrise.svg";
 import sunset from "../../../assets/sunset.svg";
+import { useWeatherData } from "../../../hooks/useWeatherData";
 
 export default function SunriseSunsetCard(): JSX.Element {
-  const data = useWeatherData();
+  const { data } = useWeatherData();
 
   return (
     <div className="bg-white p-5 rounded-2xl flex gap-y-5 flex-col">

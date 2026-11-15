@@ -1,13 +1,13 @@
 import type { JSX } from "@emotion/react/jsx-runtime";
 import { useRef, useState } from "react";
 import HourlyCard from "../HourlyCard/HourlyCard";
-import { useWeatherData } from "../../../services/WeatherDataContext";
 import { Fragment } from "react/jsx-runtime";
+import { useWeatherData } from "../../../hooks/useWeatherData";
 
 const RESISTANCE = 0.3;
 
 export default function HourlyForecast(): JSX.Element {
-  const data = useWeatherData();
+  const { data } = useWeatherData();
   const hours = data?.days[0].hours;
 
   const containerRef = useRef<HTMLDivElement>(null);

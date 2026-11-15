@@ -1,18 +1,17 @@
 import type { JSX } from "react/jsx-runtime";
-import { useWeatherData } from "../../../services/WeatherDataContext";
+import { useWeatherData } from "../../../hooks/useWeatherData";
 
 function usAqiCategory(aqi: number) {
   if (aqi <= 50) return { label: "Good", color: "#00e400" };
   if (aqi <= 100) return { label: "Moderate", color: "#ffff00" };
-  if (aqi <= 150)
-    return { label: "Unhealthy for Sensitive Groups", color: "#ff7e00" };
+  if (aqi <= 150) return { label: "Unhealthy", color: "#ff7e00" };
   if (aqi <= 200) return { label: "Unhealthy", color: "#ff0000" };
   if (aqi <= 300) return { label: "Very Unhealthy", color: "#8f3f97" };
   return { label: "Hazardous", color: "#7e0023" };
 }
 
 export default function AirQualityCard(): JSX.Element {
-  const data = useWeatherData();
+  const { data } = useWeatherData();
   const aqi = data?.currentConditions?.aqius;
   const category = aqi != null ? usAqiCategory(aqi) : null;
 

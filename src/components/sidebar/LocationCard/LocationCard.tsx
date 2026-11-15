@@ -1,9 +1,9 @@
 import type { JSX } from "react/jsx-runtime";
-import { useWeatherData } from "../../../services/WeatherDataContext";
 import cityImg from "../../../assets/city.jpg";
+import { useWeatherData } from "../../../hooks/useWeatherData";
 
 export default function LocationCard(): JSX.Element {
-  const data = useWeatherData();
+  const { data } = useWeatherData();
 
   return (
     <div
