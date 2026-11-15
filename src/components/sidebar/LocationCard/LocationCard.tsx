@@ -7,7 +7,7 @@ export default function LocationCard(): JSX.Element {
 
   return (
     <div
-      className="rounded-xl py-8 bg-cover bg-center lg:bg-top text-white mt-10 hover:scale-101 duration-300"
+      className="rounded-xl py-8 bg-cover bg-center lg:bg-top text-white mt-10 hover:scale-101 duration-300 flex items-center justify-center md:text-3xl lg:text-xl"
       style={{ backgroundImage: `url(${cityImg})` }}
     >
       <p className="text-center font-bold">{data?.resolvedAddress}</p>

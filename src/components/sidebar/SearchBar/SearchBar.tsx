@@ -11,7 +11,7 @@ export default function SearchBar(): JSX.Element {
   return (
     <div className="flex items-center gap-2">
       <Search
-        className="size-5 cursor-pointer"
+        className="size-5 shrink-0 cursor-pointer"
         onClick={() => dispatch(setLocation(locationInput))}
       />
       <input
@@ -24,7 +24,7 @@ export default function SearchBar(): JSX.Element {
         name="SearchBar"
         id="searchBar"
         placeholder="Search for places..."
-        className="placeholder:text-black focus:outline-none font-medium"
+        className="placeholder:text-black focus:outline-none font-medium min-w-0 flex-1"
       />
     </div>
   );

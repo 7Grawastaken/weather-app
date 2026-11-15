@@ -7,11 +7,11 @@ export default function SunriseSunsetCard(): JSX.Element {
   const { data } = useWeatherData();
 
   return (
-    <div className="bg-white p-5 rounded-2xl flex gap-y-5 flex-col">
+    <div className="bg-white p-5 rounded-2xl flex flex-col ">
       <h1 className="text-gray-400">Sunrise & Sunset</h1>
       {data ? (
         <>
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full justify-center">
             <div className="flex items-center gap-3">
               <img src={sunrise} alt="Sunrise Time" className="size-12" />
               <div className="flex flex-col">

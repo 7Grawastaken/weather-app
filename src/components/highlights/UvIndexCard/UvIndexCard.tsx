@@ -32,7 +32,7 @@ function UvGauge({ value }: { value: number }): JSX.Element {
   const arc = `M ${CX - R} ${CY} A ${R} ${R} 0 0 1 ${CX + R} ${CY}`;
 
   return (
-    <svg viewBox="-10 0 220 115" className="w-full">
+    <svg viewBox="-10 0 220 115" className="w-full max-w-60">
       {/* Background track */}
       <path
         d={arc}

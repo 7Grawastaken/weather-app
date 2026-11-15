@@ -43,27 +43,29 @@ export default function CurrentWeather(): JSX.Element {
     WEATHER_ICONS[data?.currentConditions.icon ?? ""] ?? WEATHER_ICONS.cloudy;
 
   return (
-    <div className="flex flex-col justify-center">
-      <img src={weatherIcon} alt="Weather Icon" className="w-64 h-64" />
-      <h1 className="text-7xl font-extralight mb-5">
-        {data?.currentConditions.temp}
-        <span className="font-medium text-5xl align-top">°</span>
-        <span className="align-top font-light text-5xl">{unit.temp}</span>
-      </h1>
-      <p className="flex gap-2">
-        {day},<span className="text-[#C9C9C9]">{date}</span>
-      </p>
+    <div className="flex">
+      <div className="flex flex-col justify-center">
+        <img src={weatherIcon} alt="Weather Icon" className="w-64 h-64" />
+        <h1 className="text-7xl font-extralight mb-5">
+          {data?.currentConditions.temp}
+          <span className="font-medium text-5xl align-top">°</span>
+          <span className="align-top font-light text-5xl">{unit.temp}</span>
+        </h1>
+        <p className="flex gap-2">
+          {day},<span className="text-[#C9C9C9]">{date}</span>
+        </p>
 
-      <hr className="text-gray-200 my-5" />
+        <hr className="text-gray-200 my-5" />
 
-      <p className="flex gap-2 text-xs items-center font-medium mb-2">
-        <ConditionIcon className={`${color} size-6`} />
-        {data?.currentConditions.conditions}
-      </p>
-      <p className="flex gap-2 text-xs items-center font-medium">
-        <WavesVertical className="text-blue-700" />
-        Rain - <span>{data?.currentConditions.precipprob}%</span>
-      </p>
+        <p className="flex gap-2 text-xs items-center font-medium mb-2">
+          <ConditionIcon className={`${color} size-6`} />
+          {data?.currentConditions.conditions}
+        </p>
+        <p className="flex gap-2 text-xs items-center font-medium">
+          <WavesVertical className="text-blue-700" />
+          Rain - <span>{data?.currentConditions.precipprob}%</span>
+        </p>
+      </div>
     </div>
   );
 }

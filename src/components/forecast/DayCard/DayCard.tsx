@@ -40,7 +40,7 @@ export default function DayCard({ day }: DayCardProps): JSX.Element {
 
   return (
     <div className="bg-white rounded-xl flex flex-col items-center justify-center gap-y-4 py-2 px-5 hover:scale-105 duration-300">
-      <h1>{dayName}</h1>
+      <h1 className="text-base">{dayName}</h1>
       <Icon className={`size-10 ${color}`} />
       <div className="flex gap-1">
         <p>{Math.round(day.tempmax ?? 0)}°</p>
